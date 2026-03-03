@@ -1,0 +1,53 @@
+eleventy.config.js
+  50f5c58b7a600943 15
+_data/site.js
+  50f5c58b7a600943 1-4
+_releases/ltr001.md
+  2b5991762d72809a 20-24,26-28,30-32
+  50f5c58b7a600943 16
+assets/css/style.css
+  50f5c58b7a600943 3,10
+.github/workflows/deploy.yml
+  50f5c58b7a600943 28-29
+releases.md
+  50f5c58b7a600943 13
+_includes/header.html
+  50f5c58b7a600943 4-8,12
+_layouts/default.html
+  50f5c58b7a600943 9-13,24,41,46,86-87
+_layouts/home.html
+  50f5c58b7a600943 9-13,18,22-26,31,49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.7",
+  "base_commit_sha": "7cb4b702fe5a6b16d5a35e59e2ba706199d479b5",
+  "prompts": {
+    "2b5991762d72809a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e7ecc10f-7a8d-4318-8230-27c2a7688303",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Zachary Davison <zachary.davison@meetsmore.com>",
+      "messages": [],
+      "total_additions": 11,
+      "total_deletions": 11,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    },
+    "50f5c58b7a600943": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8254d209-7f26-48af-a057-581a2d889e90",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Zachary Davison <zachary.davison@meetsmore.com>",
+      "messages": [],
+      "total_additions": 41,
+      "total_deletions": 32,
+      "accepted_lines": 40,
+      "overriden_lines": 0
+    }
+  }
+}
