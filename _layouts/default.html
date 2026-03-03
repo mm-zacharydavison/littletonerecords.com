@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} — Little Tone Records{% else %}Little Tone Records{% endif %}</title>
+  <meta name="theme-color" content="#000000">
+  <style>html{background:#000}.page-content{opacity:0}body:not(.ready) .sidebar{visibility:hidden}</style>
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/littletone-logo-no-padding.png" as="image">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  {% include "header.html" %}
+  <div class="page-content">
+    <main>
+      {{ content }}
+    </main>
+    {% include "footer.html" %}
+  </div>
+  <script>
+    var sidebar = document.querySelector('.sidebar');
+    var content = document.querySelector('.page-content');
+    var fromHome = sessionStorage.getItem('from-home');
+    sessionStorage.removeItem('from-home');
+
+    if (fromHome) {
+      document.body.classList.add('ready');
+      sidebar.classList.add('slide-in');
+      content.classList.add('fade-in-slow');
+    } else {
+      document.body.classList.add('ready');
+      content.classList.add('fade-in');
+    }
+
+    function navigateTo(url, pushState) {
+      // Home link — full page navigation (different layout)
+      if (new URL(url, location.origin).pathname === '/') {
+        sidebar.classList.add('slide-out');
+        content.classList.remove('fade-in', 'fade-in-slow');
+        content.classList.add('fade-out');
+        sessionStorage.setItem('from-subpage', '1');
+        setTimeout(function () { window.location = '/'; }, 400);
+        return;
+      }
+
+      // SPA navigation — swap content only
+      content.classList.remove('fade-in', 'fade-in-slow');
+      content.classList.add('fade-out');
+
+      fetch(url)
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var newContent = doc.querySelector('.page-content');
+          var newTitle = doc.querySelector('title').textContent;
+
+          setTimeout(function () {
+            content.innerHTML = newContent.innerHTML;
+            document.title = newTitle;
+            if (pushState) history.pushState(null, '', url);
+            window.scrollTo(0, 0);
+            content.classList.remove('fade-out');
+            content.classList.add('fade-in');
+          }, 150);
+        });
+    }
+
+    // Intercept nav clicks
+    document.querySelector('.nav-links').addEventListener('click', function (e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      if (link.pathname === window.location.pathname) {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      navigateTo(link.href, true);
+    });
+
+    // Handle back/forward
+    window.addEventListener('popstate', function () {
+      if (location.pathname === '/') {
+        window.location = '/';
+        return;
+      }
+      navigateTo(location.href, false);
+    });
+  </script>
+</body>
+</html>

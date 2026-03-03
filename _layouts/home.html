@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Little Tone Records</title>
+  <meta name="theme-color" content="#000000">
+  <style>html{background:#000}.home-wrapper{visibility:hidden}</style>
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/littletone-logo-no-padding.png" as="image">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="is-home">
+  <div class="home-wrapper">
+    <div class="page-logo-link">
+      <img src="/assets/littletone-logo-no-padding.png" alt="Little Tone Records" class="page-logo">
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/releases/">Releases</a>
+        <a href="/demos/">Demos</a>
+        <a href="/about/">About</a>
+        <a href="/mailing-list/">Mail</a>
+      </div>
+    </nav>
+  </div>
+  <script>
+    var logo = document.querySelector('.page-logo');
+    var wrapper = document.querySelector('.home-wrapper');
+    var fromSubpage = sessionStorage.getItem('from-subpage');
+    sessionStorage.removeItem('from-subpage');
+
+    function onReady(fn) {
+      if (logo.complete) return fn();
+      logo.addEventListener('load', fn);
+    }
+
+    onReady(function () {
+      wrapper.style.visibility = 'visible';
+      wrapper.classList.add(fromSubpage ? 'slide-in' : 'fade-in');
+    });
+
+    // Navigate to section: entire wrapper slides left
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      if (link.pathname === '/') {
+        link.addEventListener('click', function (e) { e.preventDefault(); });
+        return;
+      }
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var dest = this.href;
+        wrapper.classList.remove('slide-in', 'fade-in');
+        wrapper.classList.add('slide-out');
+        sessionStorage.setItem('from-home', '1');
+        setTimeout(function () { window.location = dest; }, 400);
+      });
+    });
+  </script>
+</body>
+</html>
