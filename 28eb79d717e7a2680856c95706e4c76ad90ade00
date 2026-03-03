@@ -1,0 +1,23 @@
+releases.md
+  50f5c58b7a600943 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.7",
+  "base_commit_sha": "28eb79d717e7a2680856c95706e4c76ad90ade00",
+  "prompts": {
+    "50f5c58b7a600943": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8254d209-7f26-48af-a057-581a2d889e90",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Zachary Davison <zachary.davison@meetsmore.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
