@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Alte Haas Grotesk";
-  src: url("/assets/AlteHaasGroteskRegular.ttf") format("truetype");
+  src: url("../AlteHaasGroteskRegular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Alte Haas Grotesk";
-  src: url("/assets/AlteHaasGroteskBold.ttf") format("truetype");
+  src: url("../AlteHaasGroteskBold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }

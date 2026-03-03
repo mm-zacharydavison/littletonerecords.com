@@ -12,6 +12,7 @@ export default function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: process.env.PATH_PREFIX || "/",
     dir: {
       includes: "_includes",
       layouts: "_layouts",

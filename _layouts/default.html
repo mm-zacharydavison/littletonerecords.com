@@ -6,11 +6,11 @@
   <title>{% if title %}{{ title }} — Little Tone Records{% else %}Little Tone Records{% endif %}</title>
   <meta name="theme-color" content="#000000">
   <style>html{background:#000}.page-content{opacity:0}body:not(.ready) .sidebar{visibility:hidden}</style>
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="preload" href="/assets/littletone-logo-no-padding.png" as="image">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/x-icon" href="{{ site.prefix }}/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.prefix }}/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="{{ site.prefix }}/assets/apple-touch-icon.png">
+  <link rel="preload" href="{{ site.prefix }}/assets/littletone-logo-no-padding.png" as="image">
+  <link rel="stylesheet" href="{{ site.prefix }}/assets/css/style.css">
 </head>
 <body>
   {% include "header.html" %}
@@ -21,6 +21,7 @@
     {% include "footer.html" %}
   </div>
   <script>
+    var PREFIX = '{{ site.prefix }}';
     var sidebar = document.querySelector('.sidebar');
     var content = document.querySelector('.page-content');
     var fromHome = sessionStorage.getItem('from-home');
@@ -37,12 +38,12 @@
 
     function navigateTo(url, pushState) {
       // Home link — full page navigation (different layout)
-      if (new URL(url, location.origin).pathname === '/') {
+      if (new URL(url, location.origin).pathname === PREFIX + '/') {
         sidebar.classList.add('slide-out');
         content.classList.remove('fade-in', 'fade-in-slow');
         content.classList.add('fade-out');
         sessionStorage.setItem('from-subpage', '1');
-        setTimeout(function () { window.location = '/'; }, 400);
+        setTimeout(function () { window.location = PREFIX + '/'; }, 400);
         return;
       }
 
@@ -82,8 +83,8 @@
 
     // Handle back/forward
     window.addEventListener('popstate', function () {
-      if (location.pathname === '/') {
-        window.location = '/';
+      if (location.pathname === PREFIX + '/') {
+        window.location = PREFIX + '/';
         return;
       }
       navigateTo(location.href, false);

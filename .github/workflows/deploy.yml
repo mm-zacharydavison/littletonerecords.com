@@ -25,6 +25,8 @@ jobs:
       - run: bun install --frozen-lockfile
 
       - run: bun run build
+        env:
+          PATH_PREFIX: /littletonerecords.com/
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -6,28 +6,29 @@
   <title>Little Tone Records</title>
   <meta name="theme-color" content="#000000">
   <style>html{background:#000}.home-wrapper{visibility:hidden}</style>
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="preload" href="/assets/littletone-logo-no-padding.png" as="image">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/x-icon" href="{{ site.prefix }}/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.prefix }}/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="{{ site.prefix }}/assets/apple-touch-icon.png">
+  <link rel="preload" href="{{ site.prefix }}/assets/littletone-logo-no-padding.png" as="image">
+  <link rel="stylesheet" href="{{ site.prefix }}/assets/css/style.css">
 </head>
 <body class="is-home">
   <div class="home-wrapper">
     <div class="page-logo-link">
-      <img src="/assets/littletone-logo-no-padding.png" alt="Little Tone Records" class="page-logo">
+      <img src="{{ site.prefix }}/assets/littletone-logo-no-padding.png" alt="Little Tone Records" class="page-logo">
     </div>
     <nav>
       <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/releases/">Releases</a>
-        <a href="/demos/">Demos</a>
-        <a href="/about/">About</a>
-        <a href="/mailing-list/">Mail</a>
+        <a href="{{ site.prefix }}/">Home</a>
+        <a href="{{ site.prefix }}/releases/">Releases</a>
+        <a href="{{ site.prefix }}/demos/">Demos</a>
+        <a href="{{ site.prefix }}/about/">About</a>
+        <a href="{{ site.prefix }}/mailing-list/">Mail</a>
       </div>
     </nav>
   </div>
   <script>
+    var PREFIX = '{{ site.prefix }}';
     var logo = document.querySelector('.page-logo');
     var wrapper = document.querySelector('.home-wrapper');
     var fromSubpage = sessionStorage.getItem('from-subpage');
@@ -45,7 +46,7 @@
 
     // Navigate to section: entire wrapper slides left
     document.querySelectorAll('.nav-links a').forEach(function (link) {
-      if (link.pathname === '/') {
+      if (link.pathname === PREFIX + '/') {
         link.addEventListener('click', function (e) { e.preventDefault(); });
         return;
       }
