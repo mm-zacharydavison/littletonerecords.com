@@ -9,7 +9,7 @@ permalink: /releases/
 <ul class="release-list">
 {%- for release in collections.releases -%}
   <li>
-    <a href="{{ release.url }}" class="release-item">
+    <a href="{{ site.prefix }}{{ release.url }}" class="release-item">
       <img src="{{ site.prefix }}/{{ release.data.artwork }}" alt="{{ release.data.title }}" class="release-artwork">
       <div class="release-info">
         <div class="release-title">{{ release.data.title }}</div>
