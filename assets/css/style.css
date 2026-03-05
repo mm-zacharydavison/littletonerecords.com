@@ -332,9 +332,9 @@ footer {
 
   .sidebar .nav-links {
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-    font-size: 12px;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+    font-size: clamp(9px, 2.5vw, 12px);
   }
 
   .sidebar .page-logo-link {
